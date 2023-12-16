@@ -28,17 +28,17 @@ def downsample_image_corrected(image, block_size=20):
     downsampled_image = Image.fromarray(downsampled_array.astype(np.uint8))
     return downsampled_image
 
-for i in range(3):
+for i in range(11):
     # Load the image
-    image_path = './Art/Building/'+str(i+1)+'.png'
+    image_path = './Art/People/'+str(i+1)+'.png'
     image = Image.open(image_path)
 
     # Downsample the image using the corrected approach
     downsampled_image_corrected = downsample_image_corrected(image)
 
     # Save the downsampled image
-    downsampled_image_corrected_path = './Art/Building_Correct/'+str(i+1)+'.png'
+    downsampled_image_corrected_path = './Art/People_Correct/'+str(i+1)+'.png'
     downsampled_image_corrected.save(downsampled_image_corrected_path)
 
     # Display the downsampled image
-    downsampled_image_corrected.show()
+    # downsampled_image_corrected.show()
