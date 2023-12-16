@@ -1,0 +1,4 @@
+repository "PixelDowntown@FuQianshi@cloud"
+  path "/"
+    br "/main"
+    co "/main"

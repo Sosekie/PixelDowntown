@@ -28,7 +28,7 @@ def downsample_image_corrected(image, block_size=20):
     downsampled_image = Image.fromarray(downsampled_array.astype(np.uint8))
     return downsampled_image
 
-for i in range(11):
+for i in range(26):
     # Load the image
     image_path = './Art/People/'+str(i+1)+'.png'
     image = Image.open(image_path)
