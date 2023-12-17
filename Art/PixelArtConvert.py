@@ -3,8 +3,9 @@
 
 from PIL import Image
 import numpy as np
+import os
 
-def downsample_image_corrected(image, block_size=20):
+def downsample_image_corrected(image, block_size):
     # Convert image to numpy array
     img_array = np.array(image)
     
@@ -28,17 +29,44 @@ def downsample_image_corrected(image, block_size=20):
     downsampled_image = Image.fromarray(downsampled_array.astype(np.uint8))
     return downsampled_image
 
-for i in range(26):
-    # Load the image
-    image_path = './Art/People/'+str(i+1)+'.png'
-    image = Image.open(image_path)
+BuildingConvert = False
+if BuildingConvert:
+    # 设定原始和目标文件夹路径
+    source_folder = './Art/Building/'
+    target_folder = './Art/Building_Correct/'
 
-    # Downsample the image using the corrected approach
-    downsampled_image_corrected = downsample_image_corrected(image)
+    # 获取文件夹中所有文件的名字
+    file_names = [f for f in os.listdir(source_folder) if os.path.isfile(os.path.join(source_folder, f))]
 
-    # Save the downsampled image
-    downsampled_image_corrected_path = './Art/People_Correct/'+str(i+1)+'.png'
-    downsampled_image_corrected.save(downsampled_image_corrected_path)
+    for file_name in file_names:
+        # Load the image
+        image_path = os.path.join(source_folder, file_name)
+        image = Image.open(image_path)
 
-    # Display the downsampled image
-    # downsampled_image_corrected.show()
+        # Downsample the image using the corrected approach
+        downsampled_image_corrected = downsample_image_corrected(image, block_size=5)
+
+        # Save the downsampled image
+        downsampled_image_corrected_path = os.path.join(target_folder, file_name)
+        downsampled_image_corrected.save(downsampled_image_corrected_path)
+        print(downsampled_image_corrected_path)
+else:
+    # 设定原始和目标文件夹路径
+    source_folder = './Art/People/'
+    target_folder = './Art/People_Correct/'
+
+    # 获取文件夹中所有文件的名字
+    file_names = [f for f in os.listdir(source_folder) if os.path.isfile(os.path.join(source_folder, f))]
+
+    for file_name in file_names:
+        # Load the image
+        image_path = os.path.join(source_folder, file_name)
+        image = Image.open(image_path)
+
+        # Downsample the image using the corrected approach
+        downsampled_image_corrected = downsample_image_corrected(image, block_size=20)
+
+        # Save the downsampled image
+        downsampled_image_corrected_path = os.path.join(target_folder, file_name)
+        downsampled_image_corrected.save(downsampled_image_corrected_path)
+        print(downsampled_image_corrected_path)
