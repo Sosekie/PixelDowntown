@@ -29,10 +29,10 @@ def downsample_image_corrected(image, block_size):
     downsampled_image = Image.fromarray(downsampled_array.astype(np.uint8))
     return downsampled_image
 
-BuildingConvert = False
+BuildingConvert = True
 if BuildingConvert:
     # 设定原始和目标文件夹路径
-    source_folder = './Art/Building/'
+    source_folder = './Art/Building_transformed/'
     target_folder = './Art/Building_Correct/'
 
     # 获取文件夹中所有文件的名字
@@ -44,7 +44,7 @@ if BuildingConvert:
         image = Image.open(image_path)
 
         # Downsample the image using the corrected approach
-        downsampled_image_corrected = downsample_image_corrected(image, block_size=5)
+        downsampled_image_corrected = downsample_image_corrected(image, block_size=4)
 
         # Save the downsampled image
         downsampled_image_corrected_path = os.path.join(target_folder, file_name)

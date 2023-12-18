@@ -16,3 +16,15 @@ Download:
 M_Pixel: https://civitai.com/images/581721
 ✩ SD XL 1.0 Base Model: https://civitai.com/models/101055
 ✩ Comfy UI Download: https://github.com/comfyanonymous/Com...
+
+2. How to draw isometric pixel art
+
+Isometric Pixel Art Tutorial - Pixel Art Tips
+https://www.youtube.com/watch?v=ybDAPEd6HCE
+
+
+WORK FLOW:
+1. 1024 image -> transparent 1024 image
+2. 1024 image transform and correct details by procreate
+3. 1024 image -> 256 image by median pooling
+4. 256 image correct details by procreate
