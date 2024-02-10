@@ -36,24 +36,25 @@ def KmeansCluster(image: Image.Image, n_centers: int) -> Tuple[Image.Image, np.n
     
     return clustered_img, cluster_centers
 
-for i in range(26):
-    # Load the image
-    image_path = './Art/People_Correct/'+str(i+1)+'.png'
-    image = Image.open(image_path)
+def Median_Cut(cluster_image, num_colors):
+    cluster_image = cluster_image.convert("RGB")
+    cluster_image = cluster_image.quantize(colors=num_colors, method=Image.MEDIANCUT)
+    cluster_image = cluster_image.convert("RGBA")
+    return cluster_image
 
-    # Downsample the image using the corrected approach
-    Centers = 64
-    cluster_image, cluster_centers = KmeansCluster(image, Centers)
+# for i in range(1):
+#     # Load the image
+#     image_path = './Art/Building/'+'bakery_1'+'.png'
+#     image = Image.open(image_path)
+#     image = image.convert("RGB")
 
-    MedianCut = False
-    if MedianCut:
-        num_colors = 32
-        cluster_image = cluster_image.convert("RGB")
-        cluster_image = cluster_image.quantize(colors=num_colors, method=Image.MEDIANCUT)
-        cluster_image = cluster_image.convert("RGBA")
+#     cluster_image, cluster_centers = KmeansCluster(image, n_centers = 64)
 
-    # Save the cluster_image
-    cluster_image_path = './Art/People_Kmeans/'+str(i+1)+'.png'
-    cluster_image.save(cluster_image_path)
+#     MedianCut = False
+#     if MedianCut:
+#         cluster_image = Median_Cut(cluster_image, num_colors = 24)
 
-    print(cluster_image_path)
+#     cluster_image_path = './Art/Building_Correct/'+'bakery_1'+'.png'
+#     cluster_image.save(cluster_image_path)
+
+#     print(cluster_image_path)

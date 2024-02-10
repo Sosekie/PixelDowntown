@@ -4,6 +4,7 @@
 from PIL import Image
 import numpy as np
 import os
+# from Kmeans import KmeansCluster, Median_Cut
 
 def downsample_image_corrected(image, block_size):
     # Convert image to numpy array
@@ -32,7 +33,7 @@ def downsample_image_corrected(image, block_size):
 BuildingConvert = True
 if BuildingConvert:
     # 设定原始和目标文件夹路径
-    source_folder = './Art/Building_transformed/'
+    source_folder = './Art/Building/'
     target_folder = './Art/Building_Correct/'
 
     # 获取文件夹中所有文件的名字
@@ -43,12 +44,17 @@ if BuildingConvert:
         image_path = os.path.join(source_folder, file_name)
         image = Image.open(image_path)
 
+        print(file_name)
+
         # Downsample the image using the corrected approach
-        downsampled_image_corrected = downsample_image_corrected(image, block_size=4)
+        image = downsample_image_corrected(image, block_size=2)
+        # image = image.convert("RGB")
+        # image, cluster_centers = KmeansCluster(image, n_centers = 32)
+        # image = Median_Cut(image, num_colors = 64)
 
         # Save the downsampled image
         downsampled_image_corrected_path = os.path.join(target_folder, file_name)
-        downsampled_image_corrected.save(downsampled_image_corrected_path)
+        image.save(downsampled_image_corrected_path)
         print(downsampled_image_corrected_path)
 else:
     # 设定原始和目标文件夹路径
